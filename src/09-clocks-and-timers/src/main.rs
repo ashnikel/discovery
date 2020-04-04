@@ -5,14 +5,34 @@ use aux9::{entry, tim6};
 
 #[inline(never)]
 fn delay(tim6: &tim6::RegisterBlock, ms: u16) {
-    // TODO implement this
+    // Set the timer to go off in `ms` ticks
+    // 1 tick = 1 ms
+    tim6.arr.write(|w| w.arr().bits(ms));
+
+    // CEN: Enable the counter
+    tim6.cr1.modify(|_, w| w.cen().set_bit());
+
+    // Wait until the alarm goes off (until the update event occures)
+    while !tim6.sr.read().uif().bit_is_set() {}
+
+    // Clear the update event flag
+    tim6.sr.modify(|_, w| w.uif().clear_bit());
 }
 
 #[entry]
 fn main() -> ! {
     let (mut leds, rcc, tim6) = aux9::init();
 
-    // TODO initialize TIM6
+    // Power on the TIM6 timer
+    rcc.apb1enr.modify(|_, w| w.tim6en().set_bit());
+
+    // OPM Select one pulse mode
+    // CEN Keep the counter disabled for now
+    tim6.cr1.write(|w| w.opm().set_bit().cen().clear_bit());
+
+    // Configure the prescaler to have the counter operate at 1 kHz
+    let psc = 7999; // apb1/(psc + 1) = 1kHz; 8000kHz/(pcs + 1) = 1kHz
+    tim6.psc.write(|w| w.psc().bits(psc));
 
     let ms = 50;
     loop {

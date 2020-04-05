@@ -42,9 +42,19 @@ impl fmt::Write for SerialPort {
 fn main() -> ! {
     let (usart1, mono_timer, itm) = aux11::init();
 
-    let mut serial = SerialPort { usart1 };
+    // let mut serial = SerialPort { usart1 };
 
-    uprintln!(serial, "The answer is {}", 40 + 2);
+    // uprintln!(serial, "The answer is {}", 40 + 2);
 
-    loop {}
+    loop {
+        // Wait until there's data available
+        while usart1.isr.read().rxne().bit_is_clear() {}
+
+        // Retrieve the data
+        let byte = usart1.rdr.read().rdr().bits() as u8;
+
+        // Wait until it's safe to write to TDR and send data
+        while usart1.isr.read().txe().bit_is_clear() {}
+        usart1.tdr.write(|w| w.tdr().bits(byte.into()));
+    }
 }

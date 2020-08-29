@@ -8,6 +8,7 @@ version = "0.1.0"
 cortex-m = "0.5.6"
 panic-halt = "0.2.0"
 cortex-m-rt = "0.6.3"
+stm32f30x = "0.8.0"
 
 [dependencies.f3]
 features = ["rt"]

@@ -6,7 +6,7 @@ Let's verify that all the tools were installed correctly.
 
 ### Verify permissions
 
-Connect the F3 to your laptop using an USB cable. Be sure to connect the cable to the "USB ST-LINK"
+Connect the F3 to your computer using an USB cable. Be sure to connect the cable to the "USB ST-LINK"
 port, the USB port in the center of the edge of the board.
 
 The F3 should now appear as a USB device (file) in `/dev/bus/usb`. Let's find out how it got
@@ -48,7 +48,7 @@ In my case, it's the `/dev/bus/usb/003/005`. Now, check its permissions:
 
 ``` console
 $ ls -l /dev/bus/usb/003/005
-crw-rw-r-- 1 root root 189, 21 Sep 13 00:00 /dev/bus/usb/003/005
+crw-rw-rw- 1 root root 189, 21 Sep 13 00:00 /dev/bus/usb/003/005
 ```
 
 As before, the permissions should be `crw-rw-rw-`.
@@ -57,7 +57,7 @@ As before, the permissions should be `crw-rw-rw-`.
 
 ### First OpenOCD connection
 
-First, connect the F3 to your laptop using an USB cable. Connect the cable to the USB port in the
+First, connect the F3 to your computer using an USB cable. Connect the cable to the USB port in the
 center of edge of the board, the one that's labeled "USB ST-LINK".
 
 Two *red* LEDs should turn on right after connecting the USB cable to the board.

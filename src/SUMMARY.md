@@ -34,7 +34,7 @@
     - [Busy waiting](09-clocks-and-timers/busy-waiting.md)
     - [Putting it all together](09-clocks-and-timers/putting-it-all-together.md)
 - [Serial communication](10-serial-communication/README.md)
-    - [*nix tooling](10-serial-communication/nix-tooling.md)
+    - [\*nix tooling](10-serial-communication/nix-tooling.md)
     - [Windows tooling](10-serial-communication/windows-tooling.md)
     - [Loopbacks](10-serial-communication/loopbacks.md)
 - [USART](11-usart/README.md)
@@ -49,7 +49,7 @@
 - [Bluetooth setup](12-bluetooth-setup/README.md)
     - [Linux](12-bluetooth-setup/linux.md)
     - [Loopback](12-bluetooth-setup/loopback.md)
-    <!-- - [AT commands]() -->
+    - [AT commands](12-bluetooth-setup/at-commands.md)
 - [Serial over Bluetooth](13-serial-over-bluetooth/README.md)
 - [I2C](14-i2c/README.md)
     - [The general protocol](14-i2c/the-general-protocol.md)

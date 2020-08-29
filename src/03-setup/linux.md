@@ -129,6 +129,8 @@ $ cat /etc/udev/rules.d/99-ftdi.rules
 ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE:="0666"
 ```
 
+If you have a different USB <-> Serial converter, get its vendor and product ids from `lsusb` output.
+
 ``` console
 $ cat /etc/udev/rules.d/99-openocd.rules
 ```
@@ -147,7 +149,7 @@ Then reload the udev rules with:
 $ sudo udevadm control --reload-rules
 ```
 
-If you had any board plugged to your laptop, unplug them and then plug them in again.
+If you had any board plugged to your computer, unplug them and then plug them in again.
 
 Now, go to the [next section].
 

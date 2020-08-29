@@ -1,12 +1,29 @@
 # Hardware/knowledge requirements
 
-The only knowledge requirement to read this book is to know *some* Rust. It's
+The primary knowledge requirement to read this book is to know *some* Rust. It's
 hard for me to quantify *some* but at least I can tell you that you don't need
 to fully grok generics but you do need to know how to *use* closures. You also
 need to be familiar with the idioms of the [2018 edition], in particular with
 the fact that `extern crate` is not necessary in the 2018 edition.
 
 [2018 edition]: https://rust-lang-nursery.github.io/edition-guide/
+
+Due to the nature of embedded programming, it will also be extremely helpful to
+understand how binary and hexadecimal representations of values work, as well
+as the use of some bitwise operators. For example, it would be useful to
+understand how the following program produces its output.
+
+```rust
+fn main() {
+    let a = 0x4000_0000 + 0xa2;
+
+    // Use of the bit shift "<<" operation.
+    let b = 1 << 5;
+
+    // {:X} will format values as hexadecimal
+    println!("{:X}: {:X}", a, b);
+}
+```
 
 Also, to follow this material you'll need the following hardware:
 
@@ -28,14 +45,17 @@ Also, to follow this material you'll need the following hardware:
 <img title="STM32F3DISCOVERY" src="../assets/f3.jpg">
 </p>
 
-- OPTIONAL. A **3.3V** USB <-> Serial module. [This particular model][sparkfun] will be used
-  throughout this material but you can use any other model as long as it operates at 3.3V.
+- OPTIONAL. A **3.3V** USB <-> Serial module. To elaborate: if you have one of
+  the latest revisions of the discovery board (which is usually the case given
+  the first revision was released years ago) then you do *not* need this module
+  because the board includes this functionality on-board. If you have an older
+  revision of the board then you'll need this module for chapters 10 and 11. For
+  completeness, we'll include instructions for using a Serial module. The book
+  will use [this particular model][sparkfun] but you can use any other model as
+  long as it operates at 3.3V. The CH340G module, which you can buy
+ from [e-commerce][4] sites works too and it's probably cheaper for you to get.
 
 [sparkfun]: https://www.sparkfun.com/products/9873
-
-(The (Chinese) CH340G module, which you can buy [e-commerce][4] sites, works too and it's probably
-cheaper for you to get)
-
 [4]: https://www.aliexpress.com/wholesale?SearchText=CH340G
 
 <p align="center">
